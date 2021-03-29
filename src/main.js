@@ -2,8 +2,6 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const mammoth = require("mammoth");
 
-const fs = require('fs').promises;
-
 function createWindow() {
     const win = new BrowserWindow({
         width: 1280,
@@ -42,11 +40,12 @@ ipcMain.handle('read-file', async(ipcEvent, path) => {
 
         const docxToHTML = mammoth.convertToHtml({ path: path }).then((result) => result).then((content) => content.value)
 
-        const htmlContent = async(loadedFilePath) => {
+        const htmlContent = async() => {
             const html = await docxToHTML;
             return html;
         };
 
         return await htmlContent(path)
+
     }
 })
