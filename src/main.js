@@ -34,12 +34,16 @@ app.on('window-all-closed', () => {
     }
 })
 
+/**
+ * Handler for readfile channel from IPC process. Parses supplied DOCX file as HTML with Mammoth.
+ * @param {string} Channel - Channel to read from.
+ * @param {Event} Listener - Listener for channel.
+ * @returns {string} HTM content or empty on error.
+ */
 ipcMain.handle('read-file', async(_, path) => {
 
     if (path != undefined) {
 
-        return await mammoth.convertToHtml({ path: path }).then((result) => result.value)
+        return await mammoth.convertToHtml({ path: path }).then((result) => result.value).catch(() => "")
     }
-
-    return ""
 })
