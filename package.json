@@ -1,0 +1,58 @@
+{
+    "name": "firstapp",
+    "version": "1.0.0",
+    "description": "First Electron App",
+    "main": "src/main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make"
+    },
+    "keywords": [
+        "test"
+    ],
+    "author": "Ignacio de Miguel Díaz",
+    "license": "ISC",
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.0-beta.54",
+        "@electron-forge/maker-deb": "^6.0.0-beta.54",
+        "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+        "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+        "@electron-forge/maker-zip": "^6.0.0-beta.54",
+        "electron": "^12.0.2",
+        "eslint": "^7.23.0",
+        "mammoth": "^1.4.16",
+        "mark.js": "^8.11.1",
+        "rollup": "^2.43.1"
+    },
+    "dependencies": {
+        "electron-squirrel-startup": "^1.0.0"
+    },
+    "config": {
+        "forge": {
+            "packagerConfig": {},
+            "makers": [{
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "firstapp"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                    "name": "@electron-forge/maker-rpm",
+                    "config": {}
+                }
+            ]
+        }
+    }
+}
