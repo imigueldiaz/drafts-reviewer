@@ -34,18 +34,12 @@ app.on('window-all-closed', () => {
     }
 })
 
-ipcMain.handle('read-file', async(ipcEvent, path) => {
+ipcMain.handle('read-file', async(_, path) => {
 
     if (path != undefined) {
 
-        const docxToHTML = mammoth.convertToHtml({ path: path }).then((result) => result).then((content) => content.value)
-
-        const htmlContent = async() => {
-            const html = await docxToHTML;
-            return html;
-        };
-
-        return await htmlContent(path)
-
+        return await mammoth.convertToHtml({ path: path }).then((result) => result.value)
     }
+
+    return ""
 })
